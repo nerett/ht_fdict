@@ -1,9 +1,11 @@
 #include "ht_fdict.h"
+#include "ht_fdict_config.h"
+#include <string.h>
 
 
 /*--------------------------FUNCTION-----------------------------------------*/
 CFDictionary::CFDictionary():
-	size_ ( 0 )
+	size_ ( 100 ),
 	hashtable_ ( new CList[size_] ) //создание массива списков
 {
 
@@ -18,7 +20,7 @@ CFDictionary::~CFDictionary()
 
 
 /*--------------------------FUNCTION-----------------------------------------*/
-int addword( const char* word )
+int CFDictionary::addword( const char* word )
 {
 	/*
 		1) вычисление хеша
@@ -33,26 +35,49 @@ int addword( const char* word )
 
 	if( listpos ) //переименовать в sequence и т.п.
 	{
-		listpos->counter++;
+		listpos->frequency_++;
 	}
 	else
 	{
-		arrpos->insert_back( word );
+		listpos = arrpos->insert_back( word );
 	}
 
-
+	return listpos->frequency_;
 }
 
 
 /*--------------------------FUNCTION-----------------------------------------*/
-int rmword()
+int CFDictionary::rmword()
 {
-
+	return 0;
 }
 
 
 /*--------------------------FUNCTION-----------------------------------------*/
-int getfreq()
+int CFDictionary::getfreq()
 {
+	return 0;
+}
 
+
+/*--------------------------FUNCTION-----------------------------------------*/
+unsigned long long CFDictionary::calchash( const char* word )
+{
+	int size = strlen( word );
+
+	return xor_hash( word, size );
+}
+
+
+/*--------------------------FUNCTION-----------------------------------------*/
+CList* CFDictionary::findbyhash( unsigned long long wordhash ) //вычисляет индекс а по нему уже саму цепочку и возвращает указатель на сам список
+{
+	return &( hashtable_[wordhash % size_] );
+}
+
+
+/*--------------------------FUNCTION-----------------------------------------*/
+CListElem* CFDictionary::findbyname( const char* word )
+{
+	return NULL;
 }
