@@ -5,13 +5,14 @@ CFLAGS = -c #-fsanitize=address #-Wall -Wextra -g
 LDFLAGS = #-fsanitize=address #-Wall -Wextra -g
 BUILDDIR = Build/
 EXECDIR = Debug/
+CPPLISTDIR = ../cpp_list/
 
 EXECNAME = ht_fdict
 
 
 #----------------------------------BUILDING--------------------------------------------------
 all: mkdir main
-	$(CC) $(LDFLAGS) $(BUILDDIR)main.o $(BUILDDIR)libht_fdict.o $(BUILDDIR)libht_fdict_io.o -o $(EXECDIR)$(EXECNAME)
+	$(CC) $(LDFLAGS) $(BUILDDIR)main.o $(BUILDDIR)libht_fdict.o $(BUILDDIR)libht_fdict_io.o $(BUILDDIR)libcpp_list.o -o $(EXECDIR)$(EXECNAME)
 	
 mkdir:
 	mkdir -p Build Debug
@@ -21,7 +22,7 @@ main: libht_fdict libht_fdict_io
 
 
 #----------------------------------libht_fdict-----------------------------------------------
-libht_fdict:
+libht_fdict: libcpp_list
 	$(CC) $(CFLAGS) ht_fdict.cpp -o $(BUILDDIR)libht_fdict.o
 
 
@@ -30,8 +31,12 @@ libht_fdict:
 libht_fdict_io:
 	$(CC) $(CFLAGS) ht_fdict_io.cpp -o $(BUILDDIR)libht_fdict_io.o
 
-	
-	
+
+#----------------------------------libcpp_list-----------------------------------------------
+libcpp_list:
+	$(CC) $(CFLAGS) $(CPPLISTDIR)cpp_list.cpp -o $(BUILDDIR)libcpp_list.o
+
+
 #----------------------------------INSTALLING DEPENDENCIES-----------------------------------
 install-dependencies:
 	cd .. && git clone $(DEPENDENCIES)
