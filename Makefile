@@ -12,7 +12,7 @@ EXECNAME = ht_fdict
 
 #----------------------------------BUILDING--------------------------------------------------
 all: mkdir main
-	$(CC) $(LDFLAGS) $(BUILDDIR)main.o $(BUILDDIR)libht_fdict.o $(BUILDDIR)libht_fdict_io.o $(BUILDDIR)libcpp_list.o -o $(EXECDIR)$(EXECNAME)
+	$(CC) $(LDFLAGS) $(BUILDDIR)main.o $(BUILDDIR)libht_fdict.o $(BUILDDIR)libht_fdict_config.o $(BUILDDIR)libht_fdict_io.o $(BUILDDIR)libcpp_list.o -o $(EXECDIR)$(EXECNAME)
 	
 mkdir:
 	mkdir -p Build Debug
@@ -22,11 +22,15 @@ main: libht_fdict libht_fdict_io
 
 
 #----------------------------------libht_fdict-----------------------------------------------
-libht_fdict: libcpp_list
+libht_fdict: libcpp_list libht_fdict_config
 	$(CC) $(CFLAGS) ht_fdict.cpp -o $(BUILDDIR)libht_fdict.o
 
 
-	
+#----------------------------------libht_fdict_config----------------------------------------
+libht_fdict_config:
+	$(CC) $(CFLAGS) ht_fdict_config.cpp -o $(BUILDDIR)libht_fdict_config.o
+
+
 #----------------------------------libht_fdict_io--------------------------------------------
 libht_fdict_io:
 	$(CC) $(CFLAGS) ht_fdict_io.cpp -o $(BUILDDIR)libht_fdict_io.o
