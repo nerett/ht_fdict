@@ -37,6 +37,11 @@ install-dependencies:
 	cd .. && git clone $(DEPENDENCIES)
 
 
+#----------------------------------CONFIGURATION---------------------------------------------
+config:
+	cd cpp_list && git checkout string+counter_mode
+
+
 #----------------------------------RUNNING---------------------------------------------------
 run:
 	./$(EXECDIR)$(EXECNAME) $(CPUCODEPATH)
