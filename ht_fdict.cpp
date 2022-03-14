@@ -101,6 +101,17 @@ CList* CFDictionary::findbyhash( hash_t wordhash ) //вычисляет инде
 /*--------------------------FUNCTION-----------------------------------------*/
 CListElem* CFDictionary::findbyname( const CList* wordsequence, const char* word )
 {
+	CListElem* current_elem = wordsequence->fictional();
+
+	while( current_elem && ( current_elem->next_ != current_elem ) )
+	{
+		if( !strcmp( word, current_elem->word_ ) )
+		{
+			return current_elem;
+		}
+		current_elem = current_elem->next_;
+	}
+
 	return NULL;
 }
 
