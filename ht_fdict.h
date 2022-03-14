@@ -20,7 +20,8 @@ class CFDictionary
 
 		unsigned long long calchash( const char* word );
 		CList* findbyhash( hash_t wordhash ); //вычисляет индекс а по нему уже саму цепочку и возвращает указатель на сам список
-		CListElem* findbyname( const char* word );
+		CListElem* findbyname( const CList* wordsequence, const char* word );
+		CListElem* calcpos( const char* word, CList** listpos, CList** arrpos = NULL );
 
 	public:
 

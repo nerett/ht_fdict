@@ -105,7 +105,24 @@ CList* CFDictionary::findbyhash( hash_t wordhash ) //вычисляет инде
 
 
 /*--------------------------FUNCTION-----------------------------------------*/
-CListElem* CFDictionary::findbyname( const char* word )
+CListElem* CFDictionary::findbyname( const CList* wordsequence, const char* word )
 {
 	return NULL;
+}
+
+
+/*--------------------------FUNCTION-----------------------------------------*/
+CListElem* CFDictionary::calcpos( const char* word, CList** listpos, CList** arrpos )
+{
+	hash_t wordhash = calchash( word );
+	CList* calcd_arrpos = findbyhash( wordhash );
+	CListElem* calcd_listpos = findbyname( calcd_arrpos, word );
+
+	*listpos = calcd_listpos;
+	if( arrpos )
+	{
+		*arrpos = calcd_arrpos;
+	}
+
+	return calcd_listpos;
 }
