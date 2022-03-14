@@ -27,9 +27,9 @@ class CFDictionary
 		~CFDictionary();
 
 		int addword( const char* word );
-		int rmword();
+		int rmword( const char* word );
 
-		int getfreq();
+		int getfreq( const char* word );
 
 };
 

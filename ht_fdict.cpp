@@ -5,7 +5,7 @@
 
 /*--------------------------FUNCTION-----------------------------------------*/
 CFDictionary::CFDictionary():
-	size_ ( 100 ),
+	size_ ( DEFAULT_HASHTABLE_SIZE ),
 	hashtable_ ( new CList[size_] ) //создание массива списков
 {
 
@@ -29,7 +29,7 @@ int CFDictionary::addword( const char* word )
 		4) добавление слова/увеличение счётчика
 	*/
 
-	unsigned long long wordhash = calchash( word );
+	unsigned long long wordhash = calchash( word ); //!TODO macro
 	CList* arrpos = findbyhash( wordhash ); //вычисляет индекс а по нему уже саму цепочку и возвращает указатель на сам список
 	CListElem* listpos = findbyname( word );
 
@@ -47,15 +47,35 @@ int CFDictionary::addword( const char* word )
 
 
 /*--------------------------FUNCTION-----------------------------------------*/
-int CFDictionary::rmword()
+int CFDictionary::rmword( const char* word ) //!TODO добавить удаление по ID и т.п.
 {
-	return 0;
+	unsigned long long wordhash = calchash( word ); //!TODO macro
+	CList* arrpos = findbyhash( wordhash );
+	CListElem* listpos = findbyname( word );
+	int frequency_ = 0;
+
+	if( listpos )
+	{
+		frequency_ =  listpos->frequency_;
+		listpos->pop();
+	}
+
+	return frequency_;
 }
 
 
 /*--------------------------FUNCTION-----------------------------------------*/
-int CFDictionary::getfreq()
+int CFDictionary::getfreq( const char* word )
 {
+	unsigned long long wordhash = calchash( word ); //!TODO macro
+	CList* arrpos = findbyhash( wordhash );
+	CListElem* listpos = findbyname( word );
+
+	if( listpos )
+	{
+		return listpos->frequency_;
+	}
+
 	return 0;
 }
 
