@@ -1,5 +1,5 @@
 #include "ht_fdict.h"
-#include "ht_fdict_config.h"
+//#include "ht_fdict_config.h"
 #include <string.h>
 
 
@@ -29,9 +29,16 @@ int CFDictionary::addword( const char* word )
 		4) добавление слова/увеличение счётчика
 	*/
 
-	unsigned long long wordhash = calchash( word ); //!TODO macro
+	/* #call example#
+
+		frequency = func( word, &arrpos, &listpos );
+
+	*/
+
+	hash_t wordhash = calchash( word ); //!TODO macro
 	CList* arrpos = findbyhash( wordhash ); //вычисляет индекс а по нему уже саму цепочку и возвращает указатель на сам список
 	CListElem* listpos = findbyname( word );
+	//int frequency_ = 0;
 
 	if( listpos ) //переименовать в sequence и т.п.
 	{
@@ -49,7 +56,7 @@ int CFDictionary::addword( const char* word )
 /*--------------------------FUNCTION-----------------------------------------*/
 int CFDictionary::rmword( const char* word ) //!TODO добавить удаление по ID и т.п.
 {
-	unsigned long long wordhash = calchash( word ); //!TODO macro
+	hash_t wordhash = calchash( word ); //!TODO macro
 	CList* arrpos = findbyhash( wordhash );
 	CListElem* listpos = findbyname( word );
 	int frequency_ = 0;
@@ -67,21 +74,22 @@ int CFDictionary::rmword( const char* word ) //!TODO добавить удале
 /*--------------------------FUNCTION-----------------------------------------*/
 int CFDictionary::getfreq( const char* word )
 {
-	unsigned long long wordhash = calchash( word ); //!TODO macro
+	hash_t wordhash = calchash( word ); //!TODO macro
 	CList* arrpos = findbyhash( wordhash );
 	CListElem* listpos = findbyname( word );
+	int frequency_ = 0;
 
 	if( listpos )
 	{
-		return listpos->frequency_;
+		frequency_ = listpos->frequency_;
 	}
 
-	return 0;
+	return frequency_;
 }
 
 
 /*--------------------------FUNCTION-----------------------------------------*/
-unsigned long long CFDictionary::calchash( const char* word )
+hash_t CFDictionary::calchash( const char* word )
 {
 	int size = strlen( word );
 
@@ -90,7 +98,7 @@ unsigned long long CFDictionary::calchash( const char* word )
 
 
 /*--------------------------FUNCTION-----------------------------------------*/
-CList* CFDictionary::findbyhash( unsigned long long wordhash ) //вычисляет индекс а по нему уже саму цепочку и возвращает указатель на сам список
+CList* CFDictionary::findbyhash( hash_t wordhash ) //вычисляет индекс а по нему уже саму цепочку и возвращает указатель на сам список
 {
 	return &( hashtable_[wordhash % size_] );
 }

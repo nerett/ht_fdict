@@ -3,6 +3,7 @@
 
 
 #include "../cpp_list/cpp_list.h"
+#include "ht_fdict_config.h"
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -18,7 +19,7 @@ class CFDictionary
 	private:
 
 		unsigned long long calchash( const char* word );
-		CList* findbyhash( unsigned long long wordhash ); //вычисляет индекс а по нему уже саму цепочку и возвращает указатель на сам список
+		CList* findbyhash( hash_t wordhash ); //вычисляет индекс а по нему уже саму цепочку и возвращает указатель на сам список
 		CListElem* findbyname( const char* word );
 
 	public:
