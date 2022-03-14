@@ -48,7 +48,8 @@ install-dependencies:
 
 #----------------------------------CONFIGURATION---------------------------------------------
 config:
-	cd cpp_list && git checkout string+counter_mode
+	cd ../cpp_list && git checkout string+counter_mode
+	git checkout wordsearch_unification
 
 
 #----------------------------------RUNNING---------------------------------------------------
