@@ -1,4 +1,4 @@
-DEPENDENCIES =
+DEPENDENCIES = https://github.com/nerett/cpp_list.git
 
 CC = g++
 CFLAGS = -c #-fsanitize=address #-Wall -Wextra -g
@@ -49,7 +49,6 @@ install-dependencies:
 #----------------------------------CONFIGURATION---------------------------------------------
 config:
 	cd ../cpp_list && git checkout string+counter_mode
-	git checkout wordsearch_unification
 
 
 #----------------------------------RUNNING---------------------------------------------------
