@@ -38,13 +38,6 @@ int CFDictionary::addword( const char* word )
 	CListElem* listpos = NULL;
 	CList* arrpos = NULL;
 
-	/*
-	hash_t wordhash = calchash( word ); //!TODO macro
-	CList* arrpos = findbyhash( wordhash ); //вычисляет индекс а по нему уже саму цепочку и возвращает указатель на сам список
-	CListElem* listpos = findbyname( word );
-	//int frequency_ = 0;
-	*/
-
 	if( calcpos( word, &listpos, &arrpos ) ) //переименовать в sequence и т.п.
 	{
 		listpos->frequency_++;
@@ -62,12 +55,6 @@ int CFDictionary::addword( const char* word )
 int CFDictionary::rmword( const char* word ) //!TODO добавить удаление по ID и т.п.
 {
 	CListElem* listpos = NULL;
-
-	/*
-	hash_t wordhash = calchash( word ); //!TODO macro
-	CList* arrpos = findbyhash( wordhash );
-	CListElem* listpos = findbyname( word );
-	*/
 	int frequency_ = 0;
 
 	if( calcpos( word, &listpos ) )
@@ -84,13 +71,6 @@ int CFDictionary::rmword( const char* word ) //!TODO добавить удале
 int CFDictionary::getfreq( const char* word )
 {
 	CListElem* listpos = NULL;
-
-	/*
-	hash_t wordhash = calchash( word ); //!TODO macro
-	CList* arrpos = findbyhash( wordhash );
-	CListElem* listpos = findbyname( word );
-	int frequency_ = 0;
-	*/
 	int frequency_ = 0;
 
 	if( calcpos( word, &listpos ) )
