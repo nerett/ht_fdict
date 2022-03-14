@@ -1,5 +1,5 @@
 # HT_FDict
-This section isn't done yet.
+This frequency dictionary based on hashtamble aims at studiyng the frequency of occurrence of certain words in books written by Petrovich and other respectable MIPT professors.
 
 ## Usage
 This section isn't done yet.
