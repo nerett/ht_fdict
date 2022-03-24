@@ -1,8 +1,15 @@
 #include "ht_fdict.h"
+#include "ht_fdict_io.h"
 //#include <string.h>
 
 int main()
 {
+	CText essay;
+	essay.importfile( "testfile.txt" );
+	printf( "filebuf = %s\n", essay.textbuf_ );
+
+	return 0;
+
 	//strdup( NULL );
 	int frequency = 0;
 	CFDictionary test_dictionary;

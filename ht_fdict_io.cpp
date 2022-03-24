@@ -43,6 +43,7 @@ void CText::importfile( const char* filename )
 
 
 	FILE* input_file = fopen( filename, "r" );
+	assert( input_file ); //костыль
 
     textbuf_size_ = calc_filesize( input_file );
 	textbuf_ = new char[textbuf_size_];
