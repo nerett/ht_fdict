@@ -120,7 +120,7 @@ printf( "started findbyname search\n" );
 	CListElem* current_elem = wordsequence->head();
 	CListElem* tail = wordsequence->tail();
 
-	do
+	while( current_elem != tail )
 	{
 printf( "do - while\n" );
 printf( "current word = %s\n", current_elem->word_ );
@@ -130,7 +130,7 @@ printf( "current word = %s\n", current_elem->word_ );
 		}
 		current_elem = current_elem->next_;
 	}
-	while( current_elem != tail );
+	
 
 	return NULL;
 }
