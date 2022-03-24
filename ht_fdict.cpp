@@ -118,11 +118,12 @@ CListElem* CFDictionary::findbyname( const CList* wordsequence, const char* word
 
 printf( "started findbyname search\n" );
 	CListElem* current_elem = wordsequence->head();
-	CListElem* tail = wordsequence->tail();
+	//CListElem* tail = wordsequence->tail();
+	CListElem* fictional = wordsequence->fictional();
 
-	while( current_elem != tail )
+	while( current_elem != fictional )
 	{
-printf( "do - while\n" );
+printf( "while iteration\n" );
 printf( "current word = %s\n", current_elem->word_ );
 		if( !strcmp( word, current_elem->word_ ) )
 		{
