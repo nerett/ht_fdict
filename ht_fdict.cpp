@@ -15,7 +15,7 @@ CFDictionary::CFDictionary():
 /*--------------------------FUNCTION-----------------------------------------*/
 CFDictionary::~CFDictionary()
 {
-	delete hashtable_;
+	delete[] hashtable_;
 }
 
 
