@@ -22,6 +22,7 @@ CFDictionary::~CFDictionary()
 /*--------------------------FUNCTION-----------------------------------------*/
 int CFDictionary::addword( const char* word )
 {
+	assert( word );
 	/*
 		1) вычисление хеша
 		2) вычисление положения по хешу (т.е. поиск)
@@ -54,6 +55,9 @@ int CFDictionary::addword( const char* word )
 /*--------------------------FUNCTION-----------------------------------------*/
 int CFDictionary::rmword( const char* word ) //!TODO добавить удаление по ID и т.п.
 {
+	assert( word );
+
+
 	CListElem* listpos = NULL;
 	int frequency_ = 0;
 
@@ -70,6 +74,9 @@ int CFDictionary::rmword( const char* word ) //!TODO добавить удале
 /*--------------------------FUNCTION-----------------------------------------*/
 int CFDictionary::getfreq( const char* word )
 {
+	assert( word );
+
+
 	CListElem* listpos = NULL;
 	int frequency_ = 0;
 
@@ -85,7 +92,11 @@ int CFDictionary::getfreq( const char* word )
 /*--------------------------FUNCTION-----------------------------------------*/
 hash_t CFDictionary::calchash( const char* word )
 {
+	assert( word );
+
+
 	int size = strlen( word );
+printf( "calculating hash with wordlength = %d\n", size );
 
 	return xor_hash( word, size );
 }
@@ -101,16 +112,25 @@ CList* CFDictionary::findbyhash( hash_t wordhash ) //вычисляет инде
 /*--------------------------FUNCTION-----------------------------------------*/
 CListElem* CFDictionary::findbyname( const CList* wordsequence, const char* word )
 {
-	CListElem* current_elem = wordsequence->fictional();
+	assert( wordsequence );
+	assert( word );
 
-	while( current_elem && ( current_elem->next_ != current_elem ) )
+
+printf( "started findbyname search\n" );
+	CListElem* current_elem = wordsequence->head();
+	CListElem* tail = wordsequence->tail();
+
+	do
 	{
+printf( "do - while\n" );
+printf( "current word = %s\n", current_elem->word_ );
 		if( !strcmp( word, current_elem->word_ ) )
 		{
 			return current_elem;
 		}
 		current_elem = current_elem->next_;
 	}
+	while( current_elem != tail );
 
 	return NULL;
 }
@@ -119,7 +139,13 @@ CListElem* CFDictionary::findbyname( const CList* wordsequence, const char* word
 /*--------------------------FUNCTION-----------------------------------------*/
 CListElem* CFDictionary::calcpos( const char* word, CListElem** listpos, CList** arrpos )
 {
+	assert( word );
+	assert( listpos );
+
+
+printf( "started pos calculation\n" );
 	hash_t wordhash = calchash( word );
+printf( "calculated hash\n" );
 	CList* calcd_arrpos = findbyhash( wordhash );
 	CListElem* calcd_listpos = findbyname( calcd_arrpos, word );
 
@@ -129,5 +155,6 @@ CListElem* CFDictionary::calcpos( const char* word, CListElem** listpos, CList**
 		*arrpos = calcd_arrpos;
 	}
 
+printf( "ended pos calculation\n" );
 	return calcd_listpos;
 }
