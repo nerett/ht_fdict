@@ -16,9 +16,12 @@ class CFDictionary
 		int size_;
 		CList* hashtable_; //указатель на массив указателей на списки
 
-	private:
+	public:
 
-		unsigned long long calchash( const char* word );
+		static hash_t calchash( const char* word );
+
+	private:
+	
 		CList* findbyhash( hash_t wordhash ); //вычисляет индекс а по нему уже саму цепочку и возвращает указатель на сам список
 		CListElem* findbyname( const CList* wordsequence, const char* word );
 		CListElem* calcpos( const char* word, CListElem** listpos, CList** arrpos = NULL );
