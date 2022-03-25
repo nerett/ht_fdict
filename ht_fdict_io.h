@@ -31,7 +31,7 @@ class CText
 		int textbuf_size_;
 
 		CWord* entities_;
-		int n_entities_;
+		int max_entity_;
 
 	private:
 

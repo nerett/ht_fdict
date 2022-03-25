@@ -22,7 +22,7 @@ CText::CText():
 	textbuf_ ( nullptr ),
 	textbuf_size_ ( 0 ),
 	entities_ ( nullptr ),
-	n_entities_ ( 0 )
+	max_entity_ ( -1 )
 {
 
 }
@@ -48,8 +48,8 @@ void CText::importfile( const char* filename )
     textbuf_size_ = calc_filesize( input_file );
 	textbuf_ = new char[textbuf_size_];
 
-	n_entities_ = textbuf_size_; //костыль
-	entities_ = new CWord[n_entities_];
+	//n_entities_ = textbuf_size_; //костыль
+	entities_ = new CWord[textbuf_size_]; //костыль
 
 
 	int readsymbols = 0;
@@ -57,41 +57,23 @@ void CText::importfile( const char* filename )
 	int filecursor = 0;
 	int entitycounter = 0;
 	int i = 0;
+printf( "default max_entity = %d\n", max_entity_ );
 	while( ftell( input_file ) < textbuf_size_ )//for( i = 0; i < n_entities_; i++ ) //на всякий случай
 	{
 		//readsymbols = 
 		fscanf( input_file, "%*[^a-zA-Z]%[a-zA-Z]%n", &textbuf_[buffcursor], &readsymbols );
-printf( "readsymbols = %d\n", readsymbols  );
+printf( "readsymbols = %d\n", readsymbols );
+		max_entity_++;
 //printf( "readline = %s\n", textbuf_[lettpos] );
 
-		/*
-		if( !readsymbols )
-		{
-			break;
-		}
-		*/
-
 		buffcursor += readsymbols;
-		entities_[entitycounter].word_ = &textbuf_[buffcursor];
-		entities_[entitycounter].length_ = readsymbols;
+		entities_[max_entity_].word_ = &textbuf_[buffcursor];
+		entities_[max_entity_].length_ = readsymbols;
 
-		filecursor++;
-		entitycounter++;
-		i++;
+		//filecursor++;
+		//entitycounter++;
+		//i++;
 	}
-
-	n_entities_ = i;
-
-	/*
-    textbuf_ = new char*[textbuf_size_];
-	fread( textbuf_, sizeof( char ), textbuf_size_, input_file );
-
-    count_strings();
-	entities_ = new char*[n_entities_]
-    //some_text->index_string = ( char** ) calloc( some_text->N_strings, sizeof( char* ) ); //выделение памяти под массив указателей на начало строк
-
-    find_string_beginning();
-	*/
 
     fclose( input_file );
 }
