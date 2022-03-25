@@ -4,8 +4,8 @@
 
 #include "../cpp_list/cpp_list.h"
 #include "ht_fdict_config.h"
-#include <stdlib.h>
-#include <stdio.h>
+//#include <stdlib.h>
+#include <cstdio>
 
 
 /*--------------------------CLASS-----------------------------------------*/
@@ -21,7 +21,7 @@ class CFDictionary
 		static hash_t calchash( const char* word );
 
 	private:
-	
+
 		CList* findbyhash( hash_t wordhash ); //вычисляет индекс а по нему уже саму цепочку и возвращает указатель на сам список
 		CListElem* findbyname( const CList* wordsequence, const char* word );
 		CListElem* calcpos( const char* word, CListElem** listpos, CList** arrpos = NULL );

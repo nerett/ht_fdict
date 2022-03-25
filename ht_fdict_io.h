@@ -2,9 +2,10 @@
 #define HT_FDICT_IO_H_INCLUDED
 
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <assert.h>
+#include <cstdio>
+//#include <stdlib.h>
+#include <cassert>
+#include <cstring>
 
 
 /*--------------------------CLASS-----------------------------------------*/
@@ -36,6 +37,10 @@ class CText
 	private:
 
 		static int calc_filesize( FILE* const some_file );
+
+		void autorealloc();
+		void realloc_entities();
+		void realloc_textbuf();
 
 	public:
 

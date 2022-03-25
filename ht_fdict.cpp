@@ -1,6 +1,6 @@
 #include "ht_fdict.h"
 //#include "ht_fdict_config.h"
-#include <string.h>
+#include <cstring>
 
 
 /*--------------------------FUNCTION-----------------------------------------*/
