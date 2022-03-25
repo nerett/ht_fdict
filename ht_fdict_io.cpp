@@ -53,20 +53,30 @@ void CText::importfile( const char* filename )
 
 
 	int readsymbols = 0;
-	int lettpos = 0;
+	int buffcursor = 0;
+	int filecursor = 0;
+	int entitycounter = 0;
 	int i = 0;
-	for( i = 0; i < n_entities_; i++ ) //на всякий случай
+	while( ftell( input_file ) < textbuf_size_ )//for( i = 0; i < n_entities_; i++ ) //на всякий случай
 	{
-		readsymbols = fscanf( input_file, "%*[^a-zA-Z]%[a-zA-Z]", &textbuf_[lettpos] );
+		readsymbols = fscanf( input_file, "%*[^a-zA-Z]%[a-zA-Z]", &textbuf_[buffcursor] );
+printf( "readsymbols = %d\n", readsymbols  );
+//printf( "readline = %s\n", textbuf_[lettpos] );
 
+		/*
 		if( !readsymbols )
 		{
 			break;
 		}
+		*/
 
-		lettpos += readsymbols;
-		entities_[i].word_ = &textbuf_[i];
-		entities_[i].length_ = readsymbols;
+		buffcursor += readsymbols;
+		entities_[entitycounter].word_ = &textbuf_[buffcursor];
+		entities_[entitycounter].length_ = readsymbols;
+
+		filecursor++;
+		entitycounter++;
+		i++;
 	}
 
 	n_entities_ = i;
