@@ -45,8 +45,8 @@ void CText::importfile( const char* filename )
 	FILE* input_file = fopen( filename, "r" );
 	assert( input_file ); //костыль
 
-    textbuf_size_ = calc_filesize( input_file );
-	textbuf_ = new char[textbuf_size_];
+    textbuf_size_ = calc_filesize( input_file ); //костыль
+	textbuf_ = new char[textbuf_size_] {}; //{0}; //*10
 
 	//n_entities_ = textbuf_size_; //костыль
 	entities_ = new CWord[textbuf_size_]; //костыль
@@ -54,25 +54,49 @@ void CText::importfile( const char* filename )
 
 	int readsymbols = 0;
 	int buffcursor = 0;
-	int filecursor = 0;
-	int entitycounter = 0;
-	int i = 0;
-printf( "default max_entity = %d\n", max_entity_ );
-	while( ftell( input_file ) < textbuf_size_ )//for( i = 0; i < n_entities_; i++ ) //на всякий случай
-	{
-		//readsymbols = 
-		fscanf( input_file, "%*[^a-zA-Z]%[a-zA-Z]%n", &textbuf_[buffcursor], &readsymbols );
-printf( "readsymbols = %d\n", readsymbols );
-		max_entity_++;
-//printf( "readline = %s\n", textbuf_[lettpos] );
 
-		buffcursor += readsymbols;
+
+printf( "default max_entity = %d\n", max_entity_ );
+printf( "textbuff_size = %d\n", textbuf_size_ );
+printf( "\n" );
+
+
+	while( ftell( input_file ) < textbuf_size_ )
+	{
+		readsymbols = 0;
+
+		fscanf( input_file, "%*[^a-zA-Z]" );
+		fprintf( stderr, "fscanf = %d\n", fscanf( input_file, "%[a-zA-Z]%n", &textbuf_[buffcursor], &readsymbols ) );
+
+		if( !readsymbols )
+		{
+			//return;
+		}
+
+		readsymbols++;
+		max_entity_++;
+
+fprintf( stderr, "readsymbols = %d\n", readsymbols );
+fprintf( stderr, "max_entities_ = %d\n", max_entity_ );
+fprintf( stderr, "buffcursor = %d\n", buffcursor );
+fprintf( stderr, "readline first symbol = %c\n", textbuf_[buffcursor] );
+fprintf( stderr, "readline = %s\n", &textbuf_[buffcursor] );
+fprintf( stderr, "\n" );
+/*
+printf( "readsymbols = %d\n", readsymbols );
+printf( "max_entities_ = %d\n", max_entity_ );
+printf( "readline = %s\n", &textbuf_[buffcursor] );
+printf( "buffcursor = %d\n", buffcursor );
+printf( "\n" );
+*/
+
+		//fflush( stdout );
+		//readsymbols++;
+
 		entities_[max_entity_].word_ = &textbuf_[buffcursor];
 		entities_[max_entity_].length_ = readsymbols;
 
-		//filecursor++;
-		//entitycounter++;
-		//i++;
+		buffcursor += readsymbols;
 	}
 
     fclose( input_file );
