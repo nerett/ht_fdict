@@ -7,7 +7,7 @@ int main()
 	CText essay;
 	essay.importfile( "testfile.txt" );
 	//printf( "filebuf = %s\n", essay.textbuf_ );
-	printf( "n_entities_ = %d\n", essay.max_entity_ );
+	printf( "max_entity_ = %d\n", essay.max_entity_ );
 	for( int i = 0; i < essay.max_entity_; i++ )
 	{
 		printf( "entity №%d %s\n", i, essay.entities_[i].word_ );

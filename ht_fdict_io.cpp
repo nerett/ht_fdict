@@ -45,10 +45,10 @@ void CText::importfile( const char* filename )
 	FILE* input_file = fopen( filename, "r" );
 	assert( input_file ); //костыль
 
-    textbuf_size_ = calc_filesize( input_file ); //костыль (повышенный расход памяти)
+    textbuf_size_ = calc_filesize( input_file ); //повышенный расход памяти
 	textbuf_ = new char[textbuf_size_] {};
 
-	entities_ = new CWord[textbuf_size_]; //костыль (повышенный расход памяти)
+	entities_ = new CWord[textbuf_size_];
 
 
 	int readsymbols = 0;
@@ -91,7 +91,6 @@ fprintf( stderr, "\n" );
 	}
 
     fclose( input_file );
-
 	autorealloc();
 }
 
@@ -99,7 +98,7 @@ fprintf( stderr, "\n" );
 /*--------------------------FUNCTION-----------------------------------------*/
 int CText::calc_filesize( FILE* const some_file )
 {
-	fseek( some_file, 0L, SEEK_END ); //определение размера файл
+	fseek( some_file, 0L, SEEK_END );
     int filesize = ftell( some_file );
 	fseek( some_file, 0L, SEEK_SET );
 
@@ -118,22 +117,10 @@ void CText::autorealloc()
 /*--------------------------FUNCTION-----------------------------------------*/
 void CText::realloc_entities()
 {
-	for( int i = 0; i < max_entity_ + 1; i++ )
-	{
-		printf( "%p ", entities_[i].word_ );
-	}
-	printf( "\n" );
-	
 	CWord* realloc_buffer = new CWord[max_entity_ + 1];
 	memcpy( ( char* )realloc_buffer, ( char* )entities_, sizeof( CWord ) * ( max_entity_ + 1 ) ); //!TODO создать константу
 	delete[] entities_;
 	entities_ = realloc_buffer;
-
-	for( int i = 0; i < max_entity_ + 1; i++ )
-	{
-		printf( "%p ", entities_[i].word_ );
-	}
-	printf( "\n" );
 }
 
 
