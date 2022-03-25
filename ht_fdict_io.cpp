@@ -45,11 +45,10 @@ void CText::importfile( const char* filename )
 	FILE* input_file = fopen( filename, "r" );
 	assert( input_file ); //костыль
 
-    textbuf_size_ = calc_filesize( input_file ); //костыль
-	textbuf_ = new char[textbuf_size_] {}; //{0}; //*10
+    textbuf_size_ = calc_filesize( input_file ); //костыль (повышенный расход памяти)
+	textbuf_ = new char[textbuf_size_] {};
 
-	//n_entities_ = textbuf_size_; //костыль
-	entities_ = new CWord[textbuf_size_]; //костыль
+	entities_ = new CWord[textbuf_size_]; //костыль (повышенный расход памяти)
 
 
 	int readsymbols = 0;
@@ -68,10 +67,12 @@ printf( "\n" );
 		fscanf( input_file, "%*[^a-zA-Z]" );
 		fprintf( stderr, "fscanf = %d\n", fscanf( input_file, "%[a-zA-Z]%n", &textbuf_[buffcursor], &readsymbols ) );
 
-		if( !readsymbols )
+		/*
+		if( !readsymbols ) //избавляет от последнего пустого слова, но уменьшает удобство распечатки
 		{
-			//return;
+			return;
 		}
+		*/
 
 		readsymbols++;
 		max_entity_++;
@@ -82,16 +83,6 @@ fprintf( stderr, "buffcursor = %d\n", buffcursor );
 fprintf( stderr, "readline first symbol = %c\n", textbuf_[buffcursor] );
 fprintf( stderr, "readline = %s\n", &textbuf_[buffcursor] );
 fprintf( stderr, "\n" );
-/*
-printf( "readsymbols = %d\n", readsymbols );
-printf( "max_entities_ = %d\n", max_entity_ );
-printf( "readline = %s\n", &textbuf_[buffcursor] );
-printf( "buffcursor = %d\n", buffcursor );
-printf( "\n" );
-*/
-
-		//fflush( stdout );
-		//readsymbols++;
 
 		entities_[max_entity_].word_ = &textbuf_[buffcursor];
 		entities_[max_entity_].length_ = readsymbols;
@@ -100,6 +91,8 @@ printf( "\n" );
 	}
 
     fclose( input_file );
+
+	autorealloc();
 }
 
 
@@ -111,4 +104,44 @@ int CText::calc_filesize( FILE* const some_file )
 	fseek( some_file, 0L, SEEK_SET );
 
 	return filesize;
+}
+
+
+/*--------------------------FUNCTION-----------------------------------------*/
+void CText::autorealloc()
+{
+	realloc_entities();
+	//realloc_textbuf(); //нельзя так просто использовать, т.к. сбиваются указатели
+}
+
+
+/*--------------------------FUNCTION-----------------------------------------*/
+void CText::realloc_entities()
+{
+	for( int i = 0; i < max_entity_ + 1; i++ )
+	{
+		printf( "%p ", entities_[i].word_ );
+	}
+	printf( "\n" );
+	
+	CWord* realloc_buffer = new CWord[max_entity_ + 1];
+	memcpy( ( char* )realloc_buffer, ( char* )entities_, sizeof( CWord ) * ( max_entity_ + 1 ) ); //!TODO создать константу
+	delete[] entities_;
+	entities_ = realloc_buffer;
+
+	for( int i = 0; i < max_entity_ + 1; i++ )
+	{
+		printf( "%p ", entities_[i].word_ );
+	}
+	printf( "\n" );
+}
+
+
+/*--------------------------FUNCTION-----------------------------------------*/
+void CText::realloc_textbuf() //костыль
+{
+	char* realloc_buffer = new char[max_entity_] {};
+	memcpy( realloc_buffer, textbuf_, textbuf_size_); //!TODO создать константу
+	delete[] textbuf_;
+	textbuf_ = realloc_buffer;
 }
