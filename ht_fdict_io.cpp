@@ -64,7 +64,7 @@ printf( "\n" );
 	{
 		readsymbols = 0;
 
-		fscanf( input_file, "%*[^a-zA-Z]" );
+		fscanf( input_file, "%*[^a-zA-Z]" ); //!TODO изменение размера буфера fscanf
 		fprintf( stderr, "fscanf = %d\n", fscanf( input_file, "%[a-zA-Z]%n", &textbuf_[buffcursor], &readsymbols ) );
 
 		/*
