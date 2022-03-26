@@ -37,8 +37,8 @@ int CFDictionary::addword( const char* word )
 
 	*/
 
-	CListElem* listpos = NULL;
-	CList* arrpos = NULL;
+	CListElem* listpos = nullptr;
+	CList* arrpos = nullptr;
 
 	if( calcpos( word, &listpos, &arrpos ) ) //переименовать в sequence и т.п.
 	{
@@ -59,7 +59,7 @@ int CFDictionary::rmword( const char* word ) //!TODO добавить удале
 	assert( word );
 
 
-	CListElem* listpos = NULL;
+	CListElem* listpos = nullptr;
 	int frequency_ = 0;
 
 	if( calcpos( word, &listpos ) )
@@ -96,7 +96,7 @@ int CFDictionary::getfreq( const char* word )
 	assert( word );
 
 
-	CListElem* listpos = NULL;
+	CListElem* listpos = nullptr;
 	int frequency_ = 0;
 
 	if( calcpos( word, &listpos ) )
@@ -152,7 +152,7 @@ printf( "current word = %s\n", current_elem->word_ );
 	}
 	
 
-	return NULL;
+	return nullptr;
 }
 
 

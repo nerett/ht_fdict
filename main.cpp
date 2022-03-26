@@ -15,8 +15,6 @@ int main( int argc, char** argv )
 	dictionary.fill( filename );
 
 	char* searchword = nullptr;
-	//char searchword[100] = "";
-
 	while( true )
 	{
 		printf( "Введите слово для поиска\n" );
