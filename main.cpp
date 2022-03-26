@@ -14,24 +14,26 @@ int main( int argc, char** argv )
 
 	dictionary.fill( filename );
 
-	//char* searchword = nullptr;
-	char searchword[100] = "";
+	char* searchword = nullptr;
+	//char searchword[100] = "";
 
 	while( true )
 	{
 		printf( "Введите слово для поиска\n" );
 		printf( "> " );
-		scanf( "%s[a-zA-Z]", searchword );
-		printf( "\n" );
+		printf( "read symbols %d\n", scanf( "%ms[a-zA-Z]", &searchword ) );
+		//printf( "\n" );
+		printf( "searchword ptr = %p\n", searchword );
 
 		if( searchword && !strcmp( searchword, "q" ) )
 		{
+			free( searchword );
 			break;
 		}
 
 		printf( "Это слово встретилось в тексте %d раз\n", dictionary.getfreq( searchword ) );
 
-		//free( searchword );
+		free( searchword );
 	}
 	
 	return 0;
