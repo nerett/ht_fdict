@@ -1,6 +1,7 @@
 #include "ht_fdict.h"
 //#include "ht_fdict_config.h"
 #include <cstring>
+#include "ht_fdict_io.h"
 
 
 /*--------------------------FUNCTION-----------------------------------------*/
@@ -68,6 +69,24 @@ int CFDictionary::rmword( const char* word ) //!TODO добавить удале
 	}
 
 	return frequency_;
+}
+
+
+/*--------------------------FUNCTION-----------------------------------------*/
+void CFDictionary::fill( const char* filename )
+{
+	assert( filename );
+
+	
+	CText text;
+	text.importfile( filename );
+
+	//int strlength = 0;
+	int max_entity = text.get_max_n();
+	for( int i = 0; i < max_entity; i++ )
+	{
+		addword( text.get_entity(i)->word_ );
+	}
 }
 
 

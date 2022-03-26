@@ -34,6 +34,8 @@ class CFDictionary
 		int addword( const char* word );
 		int rmword( const char* word );
 
+		void fill( const char* filename );
+		
 		int getfreq( const char* word );
 
 };
