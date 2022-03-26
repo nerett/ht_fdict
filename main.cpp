@@ -4,6 +4,7 @@
 
 int main()
 {
+	/*
 	CText essay;
 	essay.importfile( "testfile.txt" );
 	//printf( "filebuf = %s\n", essay.textbuf_ );
@@ -13,11 +14,19 @@ int main()
 		printf( "entity №%d %s\n", i, essay.entities_[i].word_ );
 	}
 
-	return 0;
-
 	//strdup( NULL );
 	int frequency = 0;
+	*/
+
 	CFDictionary test_dictionary;
+
+	test_dictionary.fill( "testfile.txt" );
+	printf( "Players freq = %d\n", test_dictionary.getfreq( "Players" ) );
+
+	return 0;
+
+	int frequency = 0;
+
 	printf( "cat hash = %llu\n", CFDictionary::calchash( "cat" ) );
 	printf( "mouse hash = %llu\n", CFDictionary::calchash( "mouse" ) );
 	printf( "bat hash = %llu\n", CFDictionary::calchash( "bat" ) );
