@@ -2,112 +2,37 @@
 #include "ht_fdict_io.h"
 //#include <string.h>
 
-int main()
+int main( int argc, char** argv )
 {
-	/*
-	CText essay;
-	essay.importfile( "testfile.txt" );
-	//printf( "filebuf = %s\n", essay.textbuf_ );
-	printf( "max_entity_ = %d\n", essay.max_entity_ );
-	for( int i = 0; i < essay.max_entity_; i++ )
+	CFDictionary dictionary;
+	char* filename = "testfile.txt";
+
+	if( argc > 1 && argv[1] )
 	{
-		printf( "entity №%d %s\n", i, essay.entities_[i].word_ );
+		filename = argv[1];
 	}
 
-	//strdup( NULL );
-	int frequency = 0;
-	*/
+	dictionary.fill( filename );
 
-	CFDictionary test_dictionary;
+	//char* searchword = nullptr;
+	char searchword[100] = "";
 
-	test_dictionary.fill( "testfile.txt" );
-	printf( "Players freq = %d\n", test_dictionary.getfreq( "Players" ) );
+	while( true )
+	{
+		printf( "Введите слово для поиска\n" );
+		printf( "> " );
+		scanf( "%s[a-zA-Z]", searchword );
+		printf( "\n" );
 
-	return 0;
+		if( searchword && !strcmp( searchword, "q" ) )
+		{
+			break;
+		}
 
-	int frequency = 0;
+		printf( "Это слово встретилось в тексте %d раз\n", dictionary.getfreq( searchword ) );
 
-	printf( "cat hash = %llu\n", CFDictionary::calchash( "cat" ) );
-	printf( "mouse hash = %llu\n", CFDictionary::calchash( "mouse" ) );
-	printf( "bat hash = %llu\n", CFDictionary::calchash( "bat" ) );
-	printf( "zebra hash = %llu\n", CFDictionary::calchash( "zebra" ) );
-	printf( "lion hash = %llu\n", CFDictionary::calchash( "lion" ) );
-	printf( "tiger hash = %llu\n", CFDictionary::calchash( "tiger" ) );
-	printf( "cat hash = %llu\n", CFDictionary::calchash( "cat" ) );
-	//printf( "testword hash = %llu\n", test_dictionary.calchash( "kjbh,jasbhvasmhgvmjhvgkfgfg" ) );
-
-	printf( "---------------ADD0----------\n" );
-	test_dictionary.addword( "cat" );
-	printf( "added cat\n\n" );
-	test_dictionary.addword( "mouse" );
-	printf( "added mouse\n\n" );
-	test_dictionary.addword( "bat" );
-	printf( "added bat\n\n" );
-	test_dictionary.addword( "zebra" );
-	printf( "added zebra\n\n" );
-	test_dictionary.addword( "lion" );
-	printf( "added lion\n\n" );
-	test_dictionary.addword( "tiger" );
-	printf( "added tiger\n\n" );
-
-	printf( "---------------FREQ1----------\n" );
-	frequency = test_dictionary.getfreq( "cat" );
-	printf( "cat frequency = %d\n\n", frequency );
-	frequency = test_dictionary.getfreq( "mouse" );
-	printf( "mouse frequency = %d\n\n", frequency );
-	frequency = test_dictionary.getfreq( "bat" );
-	printf( "bat frequency = %d\n\n", frequency );
-	frequency = test_dictionary.getfreq( "zebra" );
-	printf( "zebra frequency = %d\n\n", frequency );
-	frequency = test_dictionary.getfreq( "lion" );
-	printf( "lion frequency = %d\n\n", frequency );
-	frequency = test_dictionary.getfreq( "tiger" );
-	printf( "tiger frequency = %d\n\n", frequency );
-
-	//test_dictionary.rmword( "bat" );
-
-	printf( "---------------ADD1----------\n" );
-	test_dictionary.addword( "cat" );
-	printf( "added cat\n\n" );
-	test_dictionary.addword( "mouse" );
-	printf( "added mouse\n\n" );
-	test_dictionary.addword( "bat" );
-	printf( "added bat\n\n" );
-	test_dictionary.addword( "zebra" );
-	printf( "added zebra\n\n" );
-	test_dictionary.addword( "lion" );
-	printf( "added lion\n\n" );
-	test_dictionary.addword( "tiger" );
-	printf( "added tiger\n\n" );
-
-	printf( "---------------ADD2----------\n" );
-	test_dictionary.addword( "cat" );
-	printf( "added cat\n\n" );
-	test_dictionary.addword( "mouse" );
-	printf( "added mouse\n\n" );
-	test_dictionary.addword( "bat" );
-	printf( "added bat\n\n" );
-	test_dictionary.addword( "zebra" );
-	printf( "added zebra\n\n" );
-	test_dictionary.addword( "lion" );
-	printf( "added lion\n\n" );
-	test_dictionary.addword( "tiger" );
-	printf( "added tiger\n\n" );
-
+		//free( searchword );
+	}
 	
-	printf( "---------------FREQ2----------\n" );
-	frequency = test_dictionary.getfreq( "cat" );
-	printf( "cat frequency = %d\n\n", frequency );
-	frequency = test_dictionary.getfreq( "mouse" );
-	printf( "mouse frequency = %d\n\n", frequency );
-	frequency = test_dictionary.getfreq( "bat" );
-	printf( "bat frequency = %d\n\n", frequency );
-	frequency = test_dictionary.getfreq( "zebra" );
-	printf( "zebra frequency = %d\n\n", frequency );
-	frequency = test_dictionary.getfreq( "lion" );
-	printf( "lion frequency = %d\n\n", frequency );
-	frequency = test_dictionary.getfreq( "tiger" );
-	printf( "tiger frequency = %d\n\n", frequency );
-
 	return 0;
 }
