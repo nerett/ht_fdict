@@ -1,5 +1,5 @@
-#ifndef HT_DICT_CONFIG_H_INCLUDED
-#define HT_DICT_CONFIG_H_INCLUDED
+#ifndef HT_FDICT_CONFIG_H_INCLUDED
+#define HT_FDICT_CONFIG_H_INCLUDED
 
 
 /*--------------------------TYPEDEF-------------------------------------------*/
@@ -16,4 +16,4 @@ const int DEFAULT_HASHTABLE_SIZE = 10; //!TODO установить значен
 hash_t xor_hash( const xor_data_t* data, int size );
 
 
-#endif //HT_DICT_CONFIG_H_INCLUDED
+#endif //HT_FDICT_CONFIG_H_INCLUDED
