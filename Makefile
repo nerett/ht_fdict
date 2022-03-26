@@ -1,8 +1,8 @@
 DEPENDENCIES = https://github.com/nerett/cpp_list.git
 
 CC = g++
-CFLAGS = -c -fsanitize=address -Wall -Wextra -g
-LDFLAGS = -fsanitize=address -Wall -Wextra -g
+CFLAGS = -c #-fsanitize=address -Wall -Wextra -g
+LDFLAGS = #-fsanitize=address -Wall -Wextra -g
 BUILDDIR = Build/
 EXECDIR = Debug/
 CPPLISTDIR = ../cpp_list/
@@ -56,7 +56,7 @@ run:
 	./$(EXECDIR)$(EXECNAME) $(CPUCODEPATH)
 
 rund:
-	valgrind ./$(EXECDIR)$(EXECNAME)
+	valgrind --leak-check=full ./$(EXECDIR)$(EXECNAME)
 
 
 #-----------------------------------CLEANING-------------------------------------------------
