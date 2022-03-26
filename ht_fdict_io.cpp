@@ -132,3 +132,22 @@ void CText::realloc_textbuf() //костыль
 	delete[] textbuf_;
 	textbuf_ = realloc_buffer;
 }
+
+
+/*--------------------------FUNCTION-----------------------------------------*/
+CWord* const CText::get_entity( int position )
+{
+	if( position < 0 || position > max_entity_ ) //ускорение с точки зрения предсказания ветвления
+	{
+		return nullptr;
+	}
+
+	return entities_ + position;
+}
+
+
+/*--------------------------FUNCTION-----------------------------------------*/
+int CText::get_max_n()
+{
+	return max_entity_;
+}

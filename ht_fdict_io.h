@@ -11,7 +11,7 @@
 /*--------------------------CLASS-----------------------------------------*/
 class CWord
 {
-	public:
+	public: //!TODO protected
 
 		char* word_;
 		int length_;
@@ -48,6 +48,9 @@ class CText
 		~CText();
 
 		void importfile( const char* filename );
+		CWord* const get_entity( int position );
+		int get_max_n();
+
 };
 
 
