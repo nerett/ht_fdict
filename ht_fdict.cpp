@@ -122,7 +122,8 @@ hash_t CFDictionary::calchash( const char* word )
 	#endif
 
 	//return xor_hash( word, size );
-	return symcodesum_hash( word, size );
+	//return symcodesum_hash( word, size );
+	return symcodesumv2_hash( word, size );
 }
 
 
