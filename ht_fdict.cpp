@@ -22,7 +22,7 @@ CFDictionary::~CFDictionary()
 
 
 /*--------------------------FUNCTION-----------------------------------------*/
-int CFDictionary::addword( const char* word )
+int CFDictionary::addword( const char* word, int size )
 {
 	assert( word );
 	/*
@@ -41,7 +41,7 @@ int CFDictionary::addword( const char* word )
 	CListElem* listpos = nullptr;
 	CList* arrpos = nullptr;
 
-	if( calcpos( word, &listpos, &arrpos ) ) //переименовать в sequence и т.п.
+	if( calcpos( word, size, &listpos, &arrpos ) ) //переименовать в sequence и т.п.
 	{
 		listpos->frequency_++;
 	}
@@ -63,7 +63,7 @@ int CFDictionary::rmword( const char* word ) //!TODO добавить удале
 	CListElem* listpos = nullptr;
 	int frequency_ = 0;
 
-	if( calcpos( word, &listpos ) )
+	if( calcpos( word, NO_LENGTH, &listpos ) )
 	{
 		frequency_ =  listpos->frequency_;
 		listpos->pop();
@@ -83,10 +83,12 @@ void CFDictionary::fill( const char* filename )
 	text.importfile( filename );
 
 	//int strlength = 0;
+	CWord* current_entity = nullptr;
 	int max_entity = text.get_max_n();
 	for( int i = 0; i < max_entity; i++ )
 	{
-		addword( text.get_entity(i)->word_ );
+		current_entity = text.get_entity(i);
+		addword( current_entity->word_, current_entity->length_ );
 	}
 }
 
@@ -100,7 +102,7 @@ int CFDictionary::getfreq( const char* word )
 	CListElem* listpos = nullptr;
 	int frequency_ = 0;
 
-	if( calcpos( word, &listpos ) )
+	if( calcpos( word, NO_LENGTH, &listpos ) )
 	{
 		frequency_ = listpos->frequency_;
 	}
@@ -110,12 +112,15 @@ int CFDictionary::getfreq( const char* word )
 
 
 /*--------------------------FUNCTION-----------------------------------------*/
-hash_t CFDictionary::calchash( const char* word )
+hash_t CFDictionary::calchash( const char* word, int size )
 {
 	assert( word );
 
-
-	int size = strlen( word ); //!TODO передача длины
+	if( !size )
+	{
+		size = strlen( word );
+	}
+	//int size = strlen( word ); //!TODO передача длины
 
 	#ifndef NDEBUG
 		fprintf( stderr, "[calchash]calculating hash with wordlength = %d\n", size );
@@ -173,7 +178,7 @@ CListElem* CFDictionary::findbyname( const CList* wordsequence, const char* word
 
 
 /*--------------------------FUNCTION-----------------------------------------*/
-CListElem* CFDictionary::calcpos( const char* word, CListElem** listpos, CList** arrpos )
+CListElem* CFDictionary::calcpos( const char* word, int size, CListElem** listpos, CList** arrpos )
 {
 	assert( word );
 	assert( listpos );
@@ -182,7 +187,7 @@ CListElem* CFDictionary::calcpos( const char* word, CListElem** listpos, CList**
 		fprintf( stderr, "[calcpos]started pos calculation\n" );
 	#endif
 
-	hash_t wordhash = calchash( word );
+	hash_t wordhash = calchash( word, size );
 
 	#ifndef NDEBUG
 		fprintf( stderr, "[calcpos]calculated hash = %llu\n", wordhash );
