@@ -1,6 +1,6 @@
 #include "ht_fdict.h"
-#include "ht_fdict_io.h"
-//#include <string.h>
+//#include "ht_fdict_io.h"
+#include <cstring>
 
 int main( int argc, char** argv )
 {
@@ -19,7 +19,7 @@ int main( int argc, char** argv )
 	{
 		printf( "Введите слово для поиска (q - выход)\n" );
 		printf( "> " );
-		printf( "read symbols %d\n", scanf( "%ms[a-zA-Zа-яА-Я]", &searchword ) ); //!TODO константа для формата
+		scanf( "%ms[" LATIN_ALPHABET CYRILLIC_ALPHABET "]", &searchword );
 
 		if( searchword && !strcmp( searchword, "q" ) )
 		{

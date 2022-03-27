@@ -1,4 +1,8 @@
+#include <cassert>
+#include <cstring>
+#include <cstdio>
 #include "ht_fdict_io.h"
+#include "ht_fdict_config.h"
 
 
 /*--------------------------FUNCTION-----------------------------------------*/
@@ -63,13 +67,13 @@ void CText::importfile( const char* filename )
 	{
 		readsymbols = 0;
 
-		fscanf( input_file, "%*[^a-zA-Z]" ); //!TODO изменение размера буфера fscanf
+		fscanf( input_file, "%*[^" LATIN_ALPHABET CYRILLIC_ALPHABET "]" ); //!TODO изменение размера буфера fscanf
 
 		#ifndef NDEBUG
-			fprintf( stderr, "[importfile]fscanf = %d\n", fscanf( input_file, "%[a-zA-Zа-яА-Я]%n", &textbuf_[buffcursor], &readsymbols ) );
+			fprintf( stderr, "[importfile]fscanf = %d\n", fscanf( input_file, "%[" LATIN_ALPHABET CYRILLIC_ALPHABET "]%n", &textbuf_[buffcursor], &readsymbols ) );
 		#endif
 		#ifdef NDEBUG
-			fscanf( input_file, "%[a-zA-Zа-яА-Я]%n", &textbuf_[buffcursor], &readsymbols );
+			fscanf( input_file, "%[" LATIN_ALPHABET CYRILLIC_ALPHABET "]%n", &textbuf_[buffcursor], &readsymbols );
 		#endif
 
 		/*

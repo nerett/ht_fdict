@@ -1,6 +1,7 @@
+#include <cstring>
+#include <cstdio>
 #include "ht_fdict.h"
 //#include "ht_fdict_config.h"
-#include <cstring>
 #include "ht_fdict_io.h"
 
 

@@ -2,10 +2,7 @@
 #define HT_FDICT_IO_H_INCLUDED
 
 
-#include <cstdio>
-//#include <stdlib.h>
-#include <cassert>
-#include <cstring>
+#include "ht_fdict_config.h"
 
 
 /*--------------------------CLASS-----------------------------------------*/
