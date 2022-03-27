@@ -12,6 +12,9 @@ endif
 ifeq ($(HASHFUNC), SYMCODESUM)
 	HASHFUNCFLAG = -D SYMCODESUM_HASH
 endif
+ifeq ($(HASHFUNC), SYMCODESUMV2)
+	HASHFUNCFLAG = -D SYMCODESUMV2_HASH
+endif
 
 ifndef TEXT
 	TEXT = Testfiles/Онегин.txt
