@@ -178,7 +178,7 @@ CListElem* CFDictionary::calcpos( const char* word, CListElem** listpos, CList**
 	hash_t wordhash = calchash( word );
 
 	#ifndef NDEBUG
-		fprintf( stderr, "[calcpos]calculated hash\n" );
+		fprintf( stderr, "[calcpos]calculated hash = %llu\n", wordhash );
 	#endif
 
 	CList* calcd_arrpos = findbyhash( wordhash );
