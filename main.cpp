@@ -17,7 +17,7 @@ int main( int argc, char** argv )
 	char* searchword = nullptr;
 	while( true )
 	{
-		printf( "Введите слово для поиска\n" );
+		printf( "Введите слово для поиска (q - выход)\n" );
 		printf( "> " );
 		printf( "read symbols %d\n", scanf( "%ms[a-zA-Zа-яА-Я]", &searchword ) ); //!TODO константа для формата
 

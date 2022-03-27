@@ -55,8 +55,8 @@ void CText::importfile( const char* filename )
 	int buffcursor = 0;
 
 	#ifndef NDEBUG
-		fprintf( stderr, "default max_entity = %d\n", max_entity_ );
-		fprintf( stderr, "textbuff_size = %d\n\n", textbuf_size_ );
+		fprintf( stderr, "[importfile]default max_entity = %d\n", max_entity_ );
+		fprintf( stderr, "[importfile]textbuff_size = %d\n\n", textbuf_size_ );
 	#endif
 
 	while( ftell( input_file ) < textbuf_size_ )
@@ -66,7 +66,7 @@ void CText::importfile( const char* filename )
 		fscanf( input_file, "%*[^a-zA-Z]" ); //!TODO изменение размера буфера fscanf
 
 		#ifndef NDEBUG
-			fprintf( stderr, "fscanf = %d\n", fscanf( input_file, "%[a-zA-Zа-яА-Я]%n", &textbuf_[buffcursor], &readsymbols ) );
+			fprintf( stderr, "[importfile]fscanf = %d\n", fscanf( input_file, "%[a-zA-Zа-яА-Я]%n", &textbuf_[buffcursor], &readsymbols ) );
 		#endif
 		#ifdef NDEBUG
 			fscanf( input_file, "%[a-zA-Zа-яА-Я]%n", &textbuf_[buffcursor], &readsymbols );
@@ -83,12 +83,11 @@ void CText::importfile( const char* filename )
 		max_entity_++;
 
 		#ifndef NDEBUG
-			fprintf( stderr, "readsymbols = %d\n", readsymbols );
-			fprintf( stderr, "max_entities_ = %d\n", max_entity_ );
-			fprintf( stderr, "buffcursor = %d\n", buffcursor );
-			fprintf( stderr, "readline first symbol = %c\n", textbuf_[buffcursor] );
-			fprintf( stderr, "readline = %s\n", &textbuf_[buffcursor] );
-			fprintf( stderr, "\n" );
+			fprintf( stderr, "[importfile]readsymbols = %d\n", readsymbols );
+			fprintf( stderr, "[importfile]max_entities_ = %d\n", max_entity_ );
+			fprintf( stderr, "[importfile]buffcursor = %d\n", buffcursor );
+			fprintf( stderr, "[importfile]readline first symbol = %c\n", textbuf_[buffcursor] );
+			fprintf( stderr, "[importfile]readline = %s\n\n", &textbuf_[buffcursor] );
 		#endif
 
 		entities_[max_entity_].word_ = &textbuf_[buffcursor];
