@@ -65,7 +65,7 @@ printf( "\n" );
 		readsymbols = 0;
 
 		fscanf( input_file, "%*[^a-zA-Z]" ); //!TODO изменение размера буфера fscanf
-		fprintf( stderr, "fscanf = %d\n", fscanf( input_file, "%[a-zA-Z]%n", &textbuf_[buffcursor], &readsymbols ) );
+		fprintf( stderr, "fscanf = %d\n", fscanf( input_file, "%[a-zA-Zа-яА-Я]%n", &textbuf_[buffcursor], &readsymbols ) );
 
 		/*
 		if( !readsymbols ) //избавляет от последнего пустого слова, но уменьшает удобство распечатки
