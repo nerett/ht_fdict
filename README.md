@@ -57,7 +57,7 @@ To totally rebuild the project run
 
 ```
 make clean
-make MODE=<modename>
+make MODE=<modename> HASHFUNC=<hashfuncname>
 ```
 
 ## Documentation
