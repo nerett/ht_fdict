@@ -1,4 +1,4 @@
 Build/
 Debug/
 Release/
-testfile.txt
+*.txt
