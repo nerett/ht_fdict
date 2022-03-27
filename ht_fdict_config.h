@@ -25,7 +25,7 @@ const int DEFAULT_HASHTABLE_SIZE = 50000; //!TODO установить знач�
 
 /*--------------------------PROTOTYPE-------------------------------------------*/
 hash_t xor_hash( const hash_data_t* data, int size );
-hash_t symcodesum_hash( const hash_data_t* data, int  size )
+hash_t symcodesum_hash( const hash_data_t* data, int  size );
 
 
 #endif //HT_FDICT_CONFIG_H_INCLUDED
