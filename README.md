@@ -28,10 +28,12 @@ make config
 Build the project with
 
 ```
-make MODE=<modename>
+make MODE=<modename> HASHFUNC=<hashfuncname>
 ```
 
-There are 2 modes available: `DEBUG` and `RELEASE`. The project builds in `RELEASE` mode by default, so you haven't to use `MODE` option if you want to build the project in the `RELEASE` mode (in this case simply type `make`).
+There are 2 modes available: `DEBUG` and `RELEASE`. The project builds in `RELEASE` mode by default, so you haven't to use `MODE` option if you want to build the project in the `RELEASE` mode.
+There are 3 hash functions available: `XOR`, `SYMCODESUM` and `SYMCODESUMV2`. `SYMCODESUMV2` is set to default (it is called by default in the `calchash` from the `ht_fdict.cpp`), so you don't need to use `HASHFUNC` option if you want to use `SYMCODESUMV2` (moreover, this function is the most efficient among this 3 fuctions, so do not decide to change it without the need).
+For exaple, if you want to bild the project in the `RELEASE` mode with `SYMCODESUMV2` function, you can simply run `make`.
 
 You can run `ht_fdict` with
 
