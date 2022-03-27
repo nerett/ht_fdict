@@ -1,5 +1,7 @@
 #include "ht_fdict.h"
-#include <cstring>
+//#include <cstring>
+#include <string>
+#include <iostream>
 
 int main( int argc, char** argv )
 {
@@ -8,22 +10,24 @@ int main( int argc, char** argv )
 
 	dictionary.fill( filename );
 
-	char* searchword = nullptr;
+	std::string searchword; //выглядит костыльно на фоне C-кода, зато работает везде
+	//char* searchword = nullptr;
 	while( true )
 	{
 		printf( "Введите слово для поиска (q - выход)\n" );
 		printf( "> " );
-		scanf( "%ms[" LATIN_ALPHABET CYRILLIC_ALPHABET "]", &searchword );
+		std::cin >> searchword;
+		//scanf( "%ms[" LATIN_ALPHABET CYRILLIC_ALPHABET "]", &searchword ); //!TODO fgets
 
-		if( searchword && !strcmp( searchword, "q" ) )
+		if( searchword == "q" ) //searchword && !strcmp( searchword, "q" )
 		{
-			free( searchword );
+			//free( searchword );
 			break;
 		}
 
-		printf( "Это слово встретилось в тексте %d раз\n", dictionary.getfreq( searchword ) );
+		printf( "Это слово встретилось в тексте %d раз\n", dictionary.getfreq( searchword.c_str() ) );
 
-		free( searchword );
+		//free( searchword );
 	}
 	
 	return 0;
