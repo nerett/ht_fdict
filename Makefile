@@ -1,6 +1,3 @@
-DEPENDENCIES = https://github.com/nerett/cpp_list.git
-
-
 ifeq ($(MODE), DEBUG)
 	DEBUGFLAGS = -fsanitize=address -Wall -Wextra -g
 	EXECDIR = Release/
@@ -9,18 +6,27 @@ else
 	EXECDIR = Debug/
 endif
 
-CC = g++
-CFLAGS = -c $(DEBUGFLAGS) $(RELEASEFLAGS)
-LDFLAGS = $(DEBUGFLAGS) $(RELEASEFLAGS)
-BUILDDIR = Build/
-CPPLISTDIR = ../cpp_list/
-
-EXECNAME = ht_fdict
-
+ifeq ($(HASHFUNC), XOR)
+	HASHFUNCFLAG = -D XOR_HASH
+endif
+ifeq ($(HASHFUNC), SYMCODESUM)
+	HASHFUNCFLAG = -D SYMCODESUM_HASH
+endif
 
 ifndef TEXT
 	TEXT = Testfiles/Онегин.txt
 endif
+
+
+DEPENDENCIES = https://github.com/nerett/cpp_list.git
+
+CC = g++
+CFLAGS = -c $(DEBUGFLAGS) $(RELEASEFLAGS) $(HASHFUNCFLAG)
+LDFLAGS = $(DEBUGFLAGS) $(RELEASEFLAGS) $(HASHFUNCFLAG)
+BUILDDIR = Build/
+CPPLISTDIR = ../cpp_list/
+
+EXECNAME = ht_fdict
 
 
 #----------------------------------BUILDING--------------------------------------------------
