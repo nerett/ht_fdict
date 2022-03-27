@@ -2,8 +2,8 @@
 This frequency dictionary based on hashtable aims at studiyng the frequency of occurrence of certain words in books written by Petrovich and other respectable MIPT professors.
 
 ## Usage
-Run this program with `./ht_fdict <filename>` (if you haven't done any changes to the Makefile) from the `Release/` or `Debug/` depending on how you've built it (also see *Building from sourse* section for more information). Or type `make run TEXT=<filename>` (also use `MODE=DEBUG` if you built the program in the `DEBUG` mode; programs runs in the `RELEASE` mode by default).
-The program will automatically index the file given. Then you'll be asked to enter a word to search in the hashtable. After you enter a word, the program will display this word's frequency. You can search for `q` to exit program.
+Run this program with `./ht_fdict <filename>` (if you haven't done any changes to the Makefile) from the `Release/` or `Debug/` depending on how you've built it (also see *Building from sourse* section for more information). Or type `make run TEXT=<filename>` (also use `MODE=DEBUG` if you built the program in the `DEBUG` mode; program runs in the `RELEASE` mode by default).
+The program will automatically index the file given. Then you'll be asked to enter a word to search in the hashtable. After you enter a word, the program will display this word's frequency. You can search for `q` to exit the program.
 
 ## Building from source
 Download this repository with
@@ -41,7 +41,7 @@ make run MODE=<modename> TEXT=<filename>
 
 If you choose not to use `TEXT` option, the program will use `Onegin.txt` file from the `Testfiles/` directory.
 `MODE` is set to `RELEASE` by default. Therefore, if you want to run the program in the `RELEASE` mode with `Onegin.txt` file, simply type `make run`.
-You can also use `make rund` instead to run with `valgrind`. Options are the same.
+You can also use `make rund` instead to run with `valgrind` (options are the same).
 
 You can also run this binary with (from project root directory)
 
