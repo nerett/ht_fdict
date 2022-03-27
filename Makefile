@@ -19,7 +19,7 @@ EXECNAME = ht_fdict
 
 
 ifndef TEXT
-	TEXT = Testfiles/testfile.txt
+	TEXT = Testfiles/Онегин.txt
 endif
 
 
