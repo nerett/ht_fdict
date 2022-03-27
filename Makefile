@@ -1,10 +1,19 @@
 DEPENDENCIES = https://github.com/nerett/cpp_list.git
 
+
+ifeq ($(MODE), DEBUG)
+	DEBUGFLAGS = -fsanitize=address -Wall -Wextra -g
+	EXECDIR = Release/
+else
+	RELEASEFLAGS = -D NDEBUG
+	EXECDIR = Debug/
+endif
+
 CC = g++
-CFLAGS = -c -fsanitize=address -Wall -Wextra -g #-D NDEBUG
-LDFLAGS = -fsanitize=address -Wall -Wextra -g #-D NDEBUG
+CFLAGS = -c $(DEBUGFLAGS) $(RELEASEFLAGS)
+LDFLAGS = $(DEBUGFLAGS) $(RELEASEFLAGS)
 BUILDDIR = Build/
-EXECDIR = Debug/
+
 CPPLISTDIR = ../cpp_list/
 
 EXECNAME = ht_fdict
@@ -15,7 +24,7 @@ all: mkdir main
 	$(CC) $(LDFLAGS) $(BUILDDIR)main.o $(BUILDDIR)libht_fdict.o $(BUILDDIR)libht_fdict_config.o $(BUILDDIR)libht_fdict_io.o $(BUILDDIR)libcpp_list.o -o $(EXECDIR)$(EXECNAME)
 	
 mkdir:
-	mkdir -p Build Debug
+	mkdir -p Debug/ Release/ Build/
 	
 main: libht_fdict libht_fdict_io
 	$(CC) $(CFLAGS) main.cpp -o $(BUILDDIR)main.o
@@ -53,7 +62,7 @@ config:
 
 #----------------------------------RUNNING---------------------------------------------------
 run:
-	./$(EXECDIR)$(EXECNAME) $(CPUCODEPATH)
+	./$(EXECDIR)$(EXECNAME)
 
 rund:
 	valgrind --leak-check=full ./$(EXECDIR)$(EXECNAME)
@@ -61,4 +70,4 @@ rund:
 
 #-----------------------------------CLEANING-------------------------------------------------
 clean:
-	rm -rf $(BUILDDIR) $(EXECDIR)
+	rm -rf Debug/ Release/ Build/
