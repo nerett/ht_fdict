@@ -115,13 +115,14 @@ hash_t CFDictionary::calchash( const char* word )
 	assert( word );
 
 
-	int size = strlen( word );
+	int size = strlen( word ); //!TODO передача длины
 
 	#ifndef NDEBUG
 		fprintf( stderr, "[calchash]calculating hash with wordlength = %d\n", size );
 	#endif
 
-	return xor_hash( word, size );
+	//return xor_hash( word, size );
+	return symcodesum_hash( word, size );
 }
 
 

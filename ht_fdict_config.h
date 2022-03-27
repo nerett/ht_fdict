@@ -8,7 +8,7 @@
 
 
 /*--------------------------TYPEDEF-------------------------------------------*/
-typedef char xor_data_t;
+typedef char hash_data_t;
 typedef unsigned long long hash_t;
 
 
@@ -20,11 +20,12 @@ const char* MEM_READ_SYMBOLS_FORMAT = "%ms[" LATIN_ALPHABET CYRILLIC_ALPHABET "]
 */
 
 const hash_t HASH_KEY = 0xAB0BAB0BAB0BAB0B;
-const int DEFAULT_HASHTABLE_SIZE = 100; //!TODO установить значение в 50 000 - 100 000 или сделать этот параметр динамическим
+const int DEFAULT_HASHTABLE_SIZE = 50000; //!TODO установить значение в 50 000 - 100 000 или сделать этот параметр динамическим
 
 
 /*--------------------------PROTOTYPE-------------------------------------------*/
-hash_t xor_hash( const xor_data_t* data, int size );
+hash_t xor_hash( const hash_data_t* data, int size );
+hash_t symcodesum_hash( const hash_data_t* data, int  size )
 
 
 #endif //HT_FDICT_CONFIG_H_INCLUDED

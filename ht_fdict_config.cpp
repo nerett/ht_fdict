@@ -2,7 +2,7 @@
 
 
 /*--------------------------FUNCTION-----------------------------------------*/
-hash_t xor_hash( const xor_data_t* data, int size )
+hash_t xor_hash( const hash_data_t* data, int size )
 {
 	hash_t hash = HASH_KEY;
 
@@ -11,6 +11,20 @@ hash_t xor_hash( const xor_data_t* data, int size )
 		hash = hash ^ ( hash_t )data[i];
 	}
 
+
+	return hash;
+}
+
+
+/*--------------------------FUNCTION-----------------------------------------*/
+hash_t symcodesum_hash( const hash_data_t* data, int  size )
+{
+	hash_t hash = HASH_KEY;
+
+	for( int i = 0; i < size; i++ )
+	{
+		hash += ( hash_t )data[i];
+	}
 
 	return hash;
 }
