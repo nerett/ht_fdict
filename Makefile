@@ -18,6 +18,11 @@ CPPLISTDIR = ../cpp_list/
 EXECNAME = ht_fdict
 
 
+ifndef TEXT
+	TEXT = Testfiles/testfile.txt
+endif
+
+
 #----------------------------------BUILDING--------------------------------------------------
 all: mkdir main
 	$(CC) $(LDFLAGS) $(BUILDDIR)main.o $(BUILDDIR)libht_fdict.o $(BUILDDIR)libht_fdict_config.o $(BUILDDIR)libht_fdict_io.o $(BUILDDIR)libcpp_list.o -o $(EXECDIR)$(EXECNAME)
@@ -61,10 +66,10 @@ config:
 
 #----------------------------------RUNNING---------------------------------------------------
 run:
-	./$(EXECDIR)$(EXECNAME)
+	./$(EXECDIR)$(EXECNAME) $(TEXT)
 
 rund:
-	valgrind --leak-check=full ./$(EXECDIR)$(EXECNAME)
+	valgrind --leak-check=full ./$(EXECDIR)$(EXECNAME) $(TEXT)
 
 
 #-----------------------------------CLEANING-------------------------------------------------

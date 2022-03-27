@@ -23,7 +23,7 @@ class CWord
 /*--------------------------CLASS-----------------------------------------*/
 class CText
 {
-	public: //костыль
+	private: //костыль
 
 		char* textbuf_;
 		int textbuf_size_;

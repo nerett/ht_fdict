@@ -41,13 +41,19 @@ CText::~CText()
 
 
 /*--------------------------FUNCTION-----------------------------------------*/
-void CText::importfile( const char* filename )
+void CText::importfile( const char* filename ) //!TODO int
 {
 	assert( filename );
 
 
 	FILE* input_file = fopen( filename, "r" );
-	assert( input_file ); //костыль
+	assert( input_file ); //только дебаг
+	if( !input_file )
+	{
+		fprintf( stderr, "No input file!\n" ); //!TODO нормальная обработка ошибок
+		return;
+	}
+
 
     textbuf_size_ = calc_filesize( input_file ); //повышенный расход памяти
 	textbuf_ = new char[textbuf_size_] {};
@@ -117,7 +123,7 @@ int CText::calc_filesize( FILE* const some_file )
 
 
 /*--------------------------FUNCTION-----------------------------------------*/
-void CText::autorealloc()
+void CText::autorealloc() //!TODO int
 {
 	realloc_entities();
 	//realloc_textbuf(); //нельзя так просто использовать, т.к. сбиваются указатели
@@ -125,7 +131,7 @@ void CText::autorealloc()
 
 
 /*--------------------------FUNCTION-----------------------------------------*/
-void CText::realloc_entities()
+void CText::realloc_entities() //!TODO int
 {
 	CWord* realloc_buffer = new CWord[max_entity_ + 1];
 	memcpy( ( char* )realloc_buffer, ( char* )entities_, sizeof( CWord ) * ( max_entity_ + 1 ) ); //!TODO создать константу
@@ -135,7 +141,7 @@ void CText::realloc_entities()
 
 
 /*--------------------------FUNCTION-----------------------------------------*/
-void CText::realloc_textbuf() //костыль
+void CText::realloc_textbuf() //!TODO int
 {
 	char* realloc_buffer = new char[max_entity_] {};
 	memcpy( realloc_buffer, textbuf_, textbuf_size_); //!TODO создать константу

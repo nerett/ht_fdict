@@ -1,16 +1,10 @@
 #include "ht_fdict.h"
-//#include "ht_fdict_io.h"
 #include <cstring>
 
 int main( int argc, char** argv )
 {
 	CFDictionary dictionary;
-	char* filename = "testfile.txt";
-
-	if( argc > 1 && argv[1] )
-	{
-		filename = argv[1];
-	}
+	char* filename = argv[1];
 
 	dictionary.fill( filename );
 
