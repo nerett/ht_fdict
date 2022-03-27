@@ -1,8 +1,8 @@
 DEPENDENCIES = https://github.com/nerett/cpp_list.git
 
 CC = g++
-CFLAGS = -c #-fsanitize=address -Wall -Wextra -g
-LDFLAGS = #-fsanitize=address -Wall -Wextra -g
+CFLAGS = -c -D NDEBUG #-fsanitize=address -Wall -Wextra -g
+LDFLAGS = -D NDEBUG #-fsanitize=address -Wall -Wextra -g
 BUILDDIR = Build/
 EXECDIR = Debug/
 CPPLISTDIR = ../cpp_list/

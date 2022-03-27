@@ -54,18 +54,23 @@ void CText::importfile( const char* filename )
 	int readsymbols = 0;
 	int buffcursor = 0;
 
-
-printf( "default max_entity = %d\n", max_entity_ );
-printf( "textbuff_size = %d\n", textbuf_size_ );
-printf( "\n" );
-
+	#ifndef NDEBUG
+		fprintf( stderr, "default max_entity = %d\n", max_entity_ );
+		fprintf( stderr, "textbuff_size = %d\n\n", textbuf_size_ );
+	#endif
 
 	while( ftell( input_file ) < textbuf_size_ )
 	{
 		readsymbols = 0;
 
 		fscanf( input_file, "%*[^a-zA-Z]" ); //!TODO изменение размера буфера fscanf
-		fprintf( stderr, "fscanf = %d\n", fscanf( input_file, "%[a-zA-Zа-яА-Я]%n", &textbuf_[buffcursor], &readsymbols ) );
+
+		#ifndef NDEBUG
+			fprintf( stderr, "fscanf = %d\n", fscanf( input_file, "%[a-zA-Zа-яА-Я]%n", &textbuf_[buffcursor], &readsymbols ) );
+		#endif
+		#ifdef NDEBUG
+			fscanf( input_file, "%[a-zA-Zа-яА-Я]%n", &textbuf_[buffcursor], &readsymbols );
+		#endif
 
 		/*
 		if( !readsymbols ) //избавляет от последнего пустого слова, но уменьшает удобство распечатки
@@ -77,12 +82,14 @@ printf( "\n" );
 		readsymbols++;
 		max_entity_++;
 
-fprintf( stderr, "readsymbols = %d\n", readsymbols );
-fprintf( stderr, "max_entities_ = %d\n", max_entity_ );
-fprintf( stderr, "buffcursor = %d\n", buffcursor );
-fprintf( stderr, "readline first symbol = %c\n", textbuf_[buffcursor] );
-fprintf( stderr, "readline = %s\n", &textbuf_[buffcursor] );
-fprintf( stderr, "\n" );
+		#ifndef NDEBUG
+			fprintf( stderr, "readsymbols = %d\n", readsymbols );
+			fprintf( stderr, "max_entities_ = %d\n", max_entity_ );
+			fprintf( stderr, "buffcursor = %d\n", buffcursor );
+			fprintf( stderr, "readline first symbol = %c\n", textbuf_[buffcursor] );
+			fprintf( stderr, "readline = %s\n", &textbuf_[buffcursor] );
+			fprintf( stderr, "\n" );
+		#endif
 
 		entities_[max_entity_].word_ = &textbuf_[buffcursor];
 		entities_[max_entity_].length_ = readsymbols;

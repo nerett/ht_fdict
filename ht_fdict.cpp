@@ -115,7 +115,10 @@ hash_t CFDictionary::calchash( const char* word )
 
 
 	int size = strlen( word );
-printf( "calculating hash with wordlength = %d\n", size );
+
+	#ifndef NDEBUG
+		fprintf( stderr, "calculating hash with wordlength = %d\n", size );
+	#endif
 
 	return xor_hash( word, size );
 }
@@ -134,16 +137,21 @@ CListElem* CFDictionary::findbyname( const CList* wordsequence, const char* word
 	assert( wordsequence );
 	assert( word );
 
+	#ifndef NDEBUG
+		fprintf( stderr, "started findbyname search\n" );
+	#endif
 
-printf( "started findbyname search\n" );
 	CListElem* current_elem = wordsequence->head();
 	//CListElem* tail = wordsequence->tail();
 	CListElem* fictional = wordsequence->fictional();
 
 	while( current_elem != fictional )
 	{
-printf( "while iteration\n" );
-printf( "current word = %s\n", current_elem->word_ );
+		#ifndef NDEBUG
+			fprintf( stderr, "while iteration\n" );
+			fprintf( stderr, "current word = %s\n", current_elem->word_ );
+		#endif
+
 		if( !strcmp( word, current_elem->word_ ) )
 		{
 			return current_elem;
@@ -162,10 +170,16 @@ CListElem* CFDictionary::calcpos( const char* word, CListElem** listpos, CList**
 	assert( word );
 	assert( listpos );
 
+	#ifndef NDEBUG
+		fprintf( stderr, "started pos calculation\n" );
+	#endif
 
-printf( "started pos calculation\n" );
 	hash_t wordhash = calchash( word );
-printf( "calculated hash\n" );
+
+	#ifndef NDEBUG
+		fprintf( stderr, "calculated hash\n" );
+	#endif
+
 	CList* calcd_arrpos = findbyhash( wordhash );
 	CListElem* calcd_listpos = findbyname( calcd_arrpos, word );
 
@@ -175,6 +189,9 @@ printf( "calculated hash\n" );
 		*arrpos = calcd_arrpos;
 	}
 
-printf( "ended pos calculation\n" );
+	#ifndef NDEBUG
+		fprintf( stderr, "ended pos calculation\n" );
+	#endif
+
 	return calcd_listpos;
 }

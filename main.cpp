@@ -20,8 +20,6 @@ int main( int argc, char** argv )
 		printf( "Введите слово для поиска\n" );
 		printf( "> " );
 		printf( "read symbols %d\n", scanf( "%ms[a-zA-Zа-яА-Я]", &searchword ) ); //!TODO константа для формата
-		//printf( "\n" );
-		printf( "searchword ptr = %p\n", searchword );
 
 		if( searchword && !strcmp( searchword, "q" ) )
 		{
