@@ -8,30 +8,26 @@ The program will automatically index the file given. Then you'll be asked to ent
 
 ## Building from source
 #### Downloading
-Download this repository with
-
+Download this repository with  
 ```bash
 git clone https://github.com/nerett/ht_fdict.git
 ```
 
 #### Installing dependencies
-Install dependencies by running (also see ***Dependencies*** section for more information)
-
+Install dependencies by running (also see ***Dependencies*** section for more information)  
 ```bash
 cd ht_fdict/
 make install-dependencies
 ```
 
 #### Configuring
-Configure with
-
+Configure with  
 ```bash
 make config
 ```
 
 #### Building
-Build the project with
-
+Build the project with  
 ```bash
 make MODE=<modename> HASHFUNC=<hashfuncname>
 ```
@@ -42,8 +38,7 @@ There are 3 hash functions available: `XOR`, `SYMCODESUM` and `SYMCODESUMV2`. `S
 For exaple, if you want to build the project in the `RELEASE` mode with `SYMCODESUMV2` function, you can simply run `make`.
 
 #### Running
-You can run `ht_fdict` with
-
+You can run `ht_fdict` with  
 ```bash
 make run MODE=<modename> TEXT=<filename>
 ```
@@ -51,20 +46,17 @@ make run MODE=<modename> TEXT=<filename>
 If you choose not to use `TEXT` option, the program will use `Onegin.txt` file from the `Testfiles/` directory.
 `MODE` is set to `RELEASE` by default. 
 
-Therefore, if you want to run the program in the `RELEASE` mode with `Onegin.txt` file, simply type
-
+Therefore, if you want to run the program in the `RELEASE` mode with `Onegin.txt` file, simply type  
 ```bash
 make run
 ```
 
-You can also use this target instead to run with `valgrind` (options are the same)
-
+You can also use this target instead to run with `valgrind` (options are the same)  
 ```bash
 make rund
 ```
 
-...or run this binary with (from project root directory)
-
+...or run this binary with (from project root directory)  
 ```bash
 ./Debug/ht_fdict <filename>
 ```
@@ -72,8 +64,7 @@ make rund
 Without the `<filename>` given the program will crash/display error message depending on the build `MODE`.
 
 #### Rebuilding
-To totally rebuild the project run
-
+To totally rebuild the project run  
 ```bash
 make clean
 make MODE=<modename> HASHFUNC=<hashfuncname>
@@ -83,23 +74,20 @@ make MODE=<modename> HASHFUNC=<hashfuncname>
 This project actually depends on `cpp_list` from the `https://nerett/cpp_list.git` and `libc` and building requires `make`, `g++` and `git` (it can also require `valgrind` installed to use `rund` target).
 
 #### Automatic method
-If you already have `ht_fdict` repo cloned, for many Unix-like oparating systems you can install all this things by running (it is runned with `sudo`, so it requires `sudo` to be installed)
-
+If you already have `ht_fdict` repo cloned, for many Unix-like oparating systems you can install all this things by running (it is runned with `sudo`, so it requires `sudo` to be installed)  
 ```bash
 cd ht_fdict/
 make install-dependencies-all PACKAGEMANAGER=<your-package-manager-name>
 ```
 
-`apt` is set as default `PACKAGEMANAGER`. So, if you want to install full list of dependencies on Debian/Ubuntu-based OS, simply run
-
+`apt` is set as default `PACKAGEMANAGER`. So, if you want to install full list of dependencies on Debian/Ubuntu-based OS, simply run  
 ```bash
 make install-dependencies-all
 ```
 
 #### Manual method
 ...or install dependencies manually.
-For Debian/Ubuntu-based OS:
-
+For Debian/Ubuntu-based OS:  
 ```bash
 apt install git build-essential valgrind
 git clone https://nerett/cpp_list.git
