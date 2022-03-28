@@ -2,7 +2,7 @@
 This frequency dictionary based on hashtable aims at studiyng the frequency of occurrence of certain words in books written by Petrovich and other respectable MIPT professors.
 
 ## Usage
-Run this program with `./ht_fdict <filename>` (if you haven't done any changes to the Makefile) from the `Release/` or `Debug/` depending on how you've built it (also see [Building from sourse](https://github.com/nerett/ht_fdict#building-from-source=) section for more information). Or type `make run TEXT=<filename>` (also use `MODE=DEBUG` if you built the program in the `DEBUG` mode; program runs in the `RELEASE` mode by default).
+Run this program with `./ht_fdict <filename>` (if you haven't done any changes to the Makefile) from the `Release/` or `Debug/` depending on how you've built it (also see [*Building from sourse*](https://github.com/nerett/ht_fdict#building-from-source) section for more information). Or type `make run TEXT=<filename>` (also use `MODE=DEBUG` if you built the program in the `DEBUG` mode; program runs in the `RELEASE` mode by default).
 
 The program will automatically index the file given. Then you'll be asked to enter a word to search in the hashtable. After you enter a word, the program will display this word's frequency. You can search for `q` to exit the program.
 
@@ -15,7 +15,7 @@ git clone https://github.com/nerett/ht_fdict.git
 ```
 
 #### Installing dependencies
-Project's dependencies can be installed with (also see [Dependencies](https://github.com/nerett/ht_fdict#dependencies=) section for more information)
+Project's dependencies can be installed with (also see [*Dependencies*](https://github.com/nerett/ht_fdict#dependencies) section for more information)
 
 ```bash
 cd ht_fdict/
@@ -82,7 +82,7 @@ make MODE=<modename> HASHFUNC=<hashfuncname>
 ```
 
 ## Dependencies
-This project actually depends on [`cpp_list`](https://nerett/cpp_list.git) and `libc` and building requires `make`, `g++` and `git` (it can also require `valgrind` installed to use `rund` target).
+This project actually depends on [`cpp_list`](https://github.com/nerett/cpp_list.git) and `libc` and building requires `make`, `g++` and `git` (it can also require `valgrind` installed to use `rund` target).
 
 #### Automated method
 If you already have `ht_fdict` repo cloned, for many Unix-like oparating systems you can install all this things by running (it is runned with `sudo`, so it requires `sudo` to be installed)
@@ -125,7 +125,7 @@ git clone https://nerett/cpp_list.git
 ```
 
 For other operating systems check information about packages names and actual package manager used.
-If you have already installed all dependencies required, you can now go to the [Building from source](https://github.com/nerett/ht_fdict#building-from-source=) section.
+If you have already installed all dependencies required, you can now go to the [*Building from source*](https://github.com/nerett/ht_fdict#building-from-source) section.
 
 
 ## Documentation
