@@ -21,7 +21,7 @@ const char* MEM_READ_SYMBOLS_FORMAT = "%ms[" LATIN_ALPHABET CYRILLIC_ALPHABET "]
 const int NO_LENGTH = 0;
 
 const hash_t HASH_KEY = 0xAB0BAB0BAB0BAB0B;
-const int DEFAULT_HASHTABLE_SIZE = 50000; //!TODO установить значение в 50 000 - 100 000 или сделать этот параметр динамическим
+const int DEFAULT_HASHTABLE_SIZE = 50000;
 
 
 /*--------------------------PROTOTYPE-------------------------------------------*/

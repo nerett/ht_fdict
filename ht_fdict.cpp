@@ -120,7 +120,7 @@ hash_t CFDictionary::calchash( const char* word, int size )
 	{
 		size = strlen( word );
 	}
-	//int size = strlen( word ); //!TODO передача длины
+	//int size = strlen( word );
 
 	#ifndef NDEBUG
 		fprintf( stderr, "[calchash]calculating hash with wordlength = %d\n", size );

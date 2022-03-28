@@ -17,7 +17,7 @@ int main( int argc, char** argv )
 		printf( "Введите слово для поиска (q - выход)\n" );
 		printf( "> " );
 		std::cin >> searchword;
-		//scanf( "%ms[" LATIN_ALPHABET CYRILLIC_ALPHABET "]", &searchword ); //!TODO fgets
+		//scanf( "%ms[" LATIN_ALPHABET CYRILLIC_ALPHABET "]", &searchword );
 
 		if( searchword == "q" ) //searchword && !strcmp( searchword, "q" )
 		{
