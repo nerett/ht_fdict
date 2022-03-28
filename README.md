@@ -62,7 +62,7 @@ make MODE=<modename> HASHFUNC=<hashfuncname>
 
 ## Dependencies
 This project actually depends on `cpp_list` from the `https://nerett/cpp_list.git` and `libc` and building requires `make`, `g++` and `git` (it can also require `valgrind` installed to use `rund` target).
-If you already have `ht_fdict` repo cloned, for many Unix-based oparating systems you can install all this things by running (it is runned with `sudo`, so it requires `sudo` to be installed)
+If you already have `ht_fdict` repo cloned, for many Unix-like oparating systems you can install all this things by running (it is runned with `sudo`, so it requires `sudo` to be installed)
 
 ```
 cd ht_fdict/
