@@ -20,8 +20,13 @@ ifndef TEXT
 	TEXT = Testfiles/Онегин.txt
 endif
 
+ifndef PACKAGEMANAGER
+	PACKAGEMANAGER = apt
+endif
+
 
 DEPENDENCIES = https://github.com/nerett/cpp_list.git
+PACKAGEDEPENDENCIES = build-essential g++ make valgrind
 
 CC = g++
 CFLAGS = -c $(DEBUGFLAGS) $(RELEASEFLAGS) $(HASHFUNCFLAG)
@@ -66,6 +71,9 @@ libcpp_list:
 #----------------------------------INSTALLING DEPENDENCIES-----------------------------------
 install-dependencies:
 	cd .. && git clone $(DEPENDENCIES)
+
+install-dependencies-all: install-dependencies
+	sudo $(PACKAGEMANAGER) install $(PACKAGEDEPENDENCIES)
 
 
 #----------------------------------CONFIGURATION---------------------------------------------
