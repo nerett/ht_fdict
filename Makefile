@@ -26,7 +26,7 @@ endif
 
 
 DEPENDENCIES = https://github.com/nerett/cpp_list.git
-PACKAGEDEPENDENCIES = build-essential g++ make valgrind
+PACKAGEDEPENDENCIES = build-essential valgrind
 
 CC = g++
 CFLAGS = -c $(DEBUGFLAGS) $(RELEASEFLAGS) $(HASHFUNCFLAG)
