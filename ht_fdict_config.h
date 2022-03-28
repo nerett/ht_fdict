@@ -13,11 +13,6 @@ typedef unsigned long long hash_t;
 
 
 /*--------------------------CONST---------------------------------------------*/
-/*
-const char* SKIP_SYMBOLS_FORMAT = "%*[^" LATIN_ALPHABET CYRILLIC_ALPHABET "]";
-const char* COUNT_READ_SYMBOLS_FORMAT = "%[" LATIN_ALPHABET CYRILLIC_ALPHABET "]%n";
-const char* MEM_READ_SYMBOLS_FORMAT = "%ms[" LATIN_ALPHABET CYRILLIC_ALPHABET "]";
-*/
 const int NO_LENGTH = 0;
 
 const hash_t HASH_KEY = 0xAB0BAB0BAB0BAB0B;
