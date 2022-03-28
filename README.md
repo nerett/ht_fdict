@@ -2,7 +2,8 @@
 This frequency dictionary based on hashtable aims at studiyng the frequency of occurrence of certain words in books written by Petrovich and other respectable MIPT professors.
 
 ## Usage
-Run this program with `./ht_fdict <filename>` (if you haven't done any changes to the Makefile) from the `Release/` or `Debug/` depending on how you've built it (also see *Building from sourse* section for more information). Or type `make run TEXT=<filename>` (also use `MODE=DEBUG` if you built the program in the `DEBUG` mode; program runs in the `RELEASE` mode by default).
+Run this program with `./ht_fdict <filename>` (if you haven't done any changes to the Makefile) from the `Release/` or `Debug/` depending on how you've built it (also see __*Building from sourse*__ section for more information). Or type `make run TEXT=<filename>` (also use `MODE=DEBUG` if you built the program in the `DEBUG` mode; program runs in the `RELEASE` mode by default).
+
 The program will automatically index the file given. Then you'll be asked to enter a word to search in the hashtable. After you enter a word, the program will display this word's frequency. You can search for `q` to exit the program.
 
 ## Building from source
@@ -12,7 +13,7 @@ Download this repository with
 git clone https://github.com/nerett/ht_fdict.git
 ```
 
-Install dependencies by running
+Install dependencies by running (also see __*Dependencies*__ section for more information)
 
 ```
 cd ht_fdict/
@@ -33,7 +34,8 @@ make MODE=<modename> HASHFUNC=<hashfuncname>
 
 There are 2 modes available: `DEBUG` and `RELEASE`. The project builds in `RELEASE` mode by default, so you haven't to use `MODE` option if you want to build the project in the `RELEASE` mode.
 There are 3 hash functions available: `XOR`, `SYMCODESUM` and `SYMCODESUMV2`. `SYMCODESUMV2` is set to default (it is called by default in the `calchash` from the `ht_fdict.cpp`), so you don't need to use `HASHFUNC` option if you want to use `SYMCODESUMV2` (moreover, this function is the most efficient among this 3 fuctions, so do not decide to change it without the need).
-For exaple, if you want to bild the project in the `RELEASE` mode with `SYMCODESUMV2` function, you can simply run `make`.
+
+For exaple, if you want to build the project in the `RELEASE` mode with `SYMCODESUMV2` function, you can simply run `make`.
 
 You can run `ht_fdict` with
 
@@ -42,10 +44,13 @@ make run MODE=<modename> TEXT=<filename>
 ```
 
 If you choose not to use `TEXT` option, the program will use `Onegin.txt` file from the `Testfiles/` directory.
-`MODE` is set to `RELEASE` by default. Therefore, if you want to run the program in the `RELEASE` mode with `Onegin.txt` file, simply type `make run`.
+`MODE` is set to `RELEASE` by default. 
+
+Therefore, if you want to run the program in the `RELEASE` mode with `Onegin.txt` file, simply type `make run`.
+
 You can also use `make rund` instead to run with `valgrind` (options are the same).
 
-You can also run this binary with (from project root directory)
+...or run this binary with (from project root directory)
 
 ```
 ./Debug/ht_fdict <filename>
@@ -80,7 +85,7 @@ git clone https://nerett/cpp_list.git
 ```
 
 For other operating systems check information about packages names and actual package manager used.
-If you have already installed all dependencies required, you can now go to the *Building from source* section.
+If you have already installed all dependencies required, you can now go to the __*Building from source*__ section.
 
 
 ## Documentation
