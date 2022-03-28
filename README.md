@@ -61,8 +61,8 @@ make MODE=<modename> HASHFUNC=<hashfuncname>
 ```
 
 ## Dependencies
-This project actually depends on `cpp_list` from the `https://nerett/cpp_list.git` and building requires `make`, `g++` and `git` (t can also require `valgrind` installed to use `rund` target).
-If you already have `ht_fdict` repo cloned, for many Unix-based oparating systems distributions you can install all this things by running (it is runned with `sudo`, so it requires `sudo` to be installed)
+This project actually depends on `cpp_list` from the `https://nerett/cpp_list.git` and `libc` and building requires `make`, `g++` and `git` (it can also require `valgrind` installed to use `rund` target).
+If you already have `ht_fdict` repo cloned, for many Unix-based oparating systems you can install all this things by running (it is runned with `sudo`, so it requires `sudo` to be installed)
 
 ```
 cd ht_fdict/
@@ -71,11 +71,11 @@ make install-dependencies-all PACKAGEMANAGER=<your-package-manager-name>
 
 `apt` is set as default `PACKAGEMANAGER`. So, if you want to install full list of dependencies on Debian/Ubuntu-based OS, simply run `make install-dependencies-all`.
 
-...or install manually.
+...or install dependencies manually.
 For Debian/Ubuntu-based OS:
 
 ```
-apt install git build-essential g++ make valgrind
+apt install git build-essential valgrind
 git clone https://nerett/cpp_list.git
 ```
 
