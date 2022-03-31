@@ -1,5 +1,5 @@
 ifeq ($(MODE), DEBUG)
-	DEBUGFLAGS = -fsanitize=address -Wall -Wextra -g
+	DEBUGFLAGS = -Wall -Wextra -g -fsanitize=address
 	EXECDIR = Release/
 else
 	RELEASEFLAGS = -D NDEBUG
@@ -28,9 +28,9 @@ endif
 DEPENDENCIES = https://github.com/nerett/cpp_list.git
 PACKAGEDEPENDENCIES = build-essential valgrind
 
-CC = g++
+CC = g++ -std=c++11
 CFLAGS = -c $(DEBUGFLAGS) $(RELEASEFLAGS) $(HASHFUNCFLAG)
-LDFLAGS = $(DEBUGFLAGS) $(RELEASEFLAGS) $(HASHFUNCFLAG)
+LDFLAGS = $(DEBUGFLAGS)
 BUILDDIR = Build/
 CPPLISTDIR = ../cpp_list/
 
